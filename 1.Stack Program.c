@@ -17,7 +17,7 @@ void st_init(STACK *s); // initializes the stack's top to -1
 int st_empty(STACK s); // returns true if stack ie empt
 int st_full(STACK s); // returns true if stack is full 
 int st_push(STACK *s, elem x); // pushes an item to the top if stack is not full
-int st_pop(STACK *s, elem x); // pops an item of the top if stack is not empty
+int st_pop(STACK *s, elem *x); // pops an item of the top if stack is not empty
 
 int main() {
     int choice, elem, i;
@@ -95,7 +95,7 @@ int st_push(STACK *s, elem x) {
     }
 }
 
-int st_pop(STACK *s, elem x) {
+int st_pop(STACK *s, elem *x) {
     if (st_empty(*s)) {
         return FALSE;
     }
