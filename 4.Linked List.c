@@ -33,7 +33,7 @@ void LL_init(LIST_PTR *head) {
 }
 
 // LL_empty(): returns TRUE if list is empty and false either
-void LL_empty(LIST_PTR head) {
+int LL_empty(LIST_PTR head) {
     return head == NULL;
 }
 
