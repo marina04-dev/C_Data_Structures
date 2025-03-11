@@ -4,17 +4,17 @@
 #define TRUE 1
 #define FALSE 0
 
-#define QUEUE_SIZE 10      /* Megethos pinaka ouras */
+#define QUEUE_SIZE 10      /* Queue's Array Length */
 
-typedef int elem;          /* typos dedomenwn ouras */
+typedef int elem;          /* Queue's data type */
 
 struct queue{
-   elem array[QUEUE_SIZE]; /* pinakas stoixeiwn     */
-   int start;			   /* arxi tis ouras 		*/
-   int finish;             /* telos tis ouras       */
+   elem array[QUEUE_SIZE]; /* elements array     */
+   int start;			   /* queue's start		*/
+   int finish;             /* queue's end     */
 };
 
-typedef struct queue QUEUE; /* Sinwnimo tis stoivas */
+typedef struct queue QUEUE; /* queue's struct alias */
 
 
 void QU_init(QUEUE *s);
@@ -34,69 +34,69 @@ int main()
 	while(1)
 	{
 		system("cls");
-		printf("Menu Ouras: ");
+		printf("Queue Menu: ");
 		printf("\n--------------");
-		printf("\n1-Eisagwgi");
-		printf("\n2-Apomakrinsi");
-		printf("\n3-Ektypwsi");
-		printf("\n4-Eksodos");
-		printf("\nEpilogi? ");
+		printf("\n1-Add Element");
+		printf("\n2-Remove Element");
+		printf("\n3-Queue Print");
+		printf("\n4-Exit");
+		printf("\nEnter your choice: ");
 		scanf("%d",&choice);
 		
 		switch(choice)
 		{
 			case 1:
-				printf("\nDwse Stoixeio: ");
+				printf("\nEnter the Element: ");
 				scanf("%d",&elem);
 				if (QU_enqueue(&q,elem))
-					printf("Egine i eisagwgi!");
+					printf("Add fullfilled with success!");
 				else
-					printf("Den egine i eiasagwgi! Gemati Oura!");
+					printf("Add Cannot Be Done! Full Queue!");
 				break;
 			case 2:
 				if (QU_dequeue(&q,&elem))
-					printf("Egine i apomakrinsi tou %d", elem);
+					printf("Remove fullfilled with success!");
 				else
-					printf("Den egine i apomakrinsi! Adeia Oura!");
+					printf("Removal Cannot Be Done! Empty Queue!");
 				break;
 			case 3:
 				QU_print(&q);
 				break;
 			case 4:
-				printf("Bye Bye!!");
+				printf("Exit!");
 				exit(0);
 			default:
-				printf("Lathos eisodos!");
+				printf("Wrong Input!");
 		}
 		printf("\n\n");
 		system("pause");
 	}
 }
 
-/* QU_init(): arxikopoiei tin oura */
+/* QU_init(): initializes queue */
 void QU_init(QUEUE *q)
 {
 	q->start =-1;
 	q->finish=-1;
 }
 
-/* QU_empty(): epistrefei TRUE/FALSE
- *          analoga me to an i oura einai adeia */
+/* QU_empty(): returns TRUE/FALSE
+ *          depending if queue is empty or not */
 int QU_empty(QUEUE q)
 {
 	return q.start==-1;
 }
 
-/* QU_full(): epistrefei TRUE/FALSE
- *          analoga me to an i oura einai gemati */
+/* QU_full(): returns TRUE/FALSE
+ *          depending if queue is full or not */
 int QU_full(QUEUE q)
 {
 	return q.start==(q.finish+1)%QUEUE_SIZE;
 }
 
-/* QU_enqueue(): Eisagei to x stin oura q
- *	epistrefei TRUE: se periptwsi epitixias
- *		       FALSE: se periptwsi apotixias */
+/* QU_enqueue(): Adds x on queue q
+*	returns TRUE: in case of success
+*		 FALSE: in case of failure */
 int QU_enqueue(QUEUE *q,elem x)
 {
 	if (QU_full(*q))
@@ -118,9 +118,9 @@ int QU_enqueue(QUEUE *q,elem x)
 }
 
 
-/* QU_dequeue(): Kanei apomakrinsi tou prwtou stoixeiou tis ouras
- *	epistrefei TRUE: se periptwsi epitixias
- *		       FALSE: se periptwsi apotixias */
+/* QU_dequeue(): Removes the first item of the queue
+*	returns TRUE: in case of success
+*		 FALSE: in case of failure */
 int QU_dequeue(QUEUE *q,elem *x)
 {
 	if (QU_empty(*q))
@@ -148,7 +148,7 @@ void QU_print(QUEUE *q)
 	QUEUE temp;
 	int x;
 	
-	/* 1. Ektypwsi twn stoixeiwn tis ouras */
+	/* 1. Queue's Elements Print*/
 	QU_init(&temp);
 	
 	while(!QU_empty(*q))
@@ -158,7 +158,7 @@ void QU_print(QUEUE *q)
 		QU_enqueue(&temp,x);
 	}
 	
-	/* 2. Ksanagemisma tis ouras q */
+	/* 2. Refill queue q */
 	
 	while (!QU_empty(temp))
 	{
