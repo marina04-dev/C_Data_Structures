@@ -86,7 +86,7 @@ int LL_delete_start(LIST_PTR *head, elem *x) {
 // LL_delete_after(): Deletes element x after element p 
 int LL_delete_after(LIST_PTR prev, elem *x) {
     LIST_PTR current;
-    if (*head==NULL) {
+    if (prev->next==NULL) {
         return FALSE;
     }
     current=prev->next;
