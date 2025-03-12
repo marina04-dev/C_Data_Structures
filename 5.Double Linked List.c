@@ -111,7 +111,7 @@ int DLL_delete_after(LIST_PTR prev, elem *x) {
 }
 
 // DLL_destroy(): Memory Release
-void DLL_destroy(LIST PTR *head) {
+void DLL_destroy(LIST_PTR *head) {
     LIST_PTR ptr;
     while (*head!=NULL) {
         ptr=*head;
