@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define TRUE 1
+#define FALSE 0
+    
 typedef int elem;
 
 struct node {
@@ -19,7 +22,7 @@ int DLL_insert_start(LIST_PTR *head, elem x);
 int DLL_insert_after(LIST_PTR p, elem x);
 int DLL_delete_start(LIST_PTR *head, elem *x);
 int DLL_delete_after(LIST_PTR prev, elem *x);
-void DLL_destroy(LIST PTR *head);
+void DLL_destroy(LIST_PTR *head);
 void DLL_print(LIST_PTR head);
 
 
