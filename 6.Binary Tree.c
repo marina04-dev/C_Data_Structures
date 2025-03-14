@@ -25,6 +25,10 @@ int TR_insert_right(TREE_PTR node, elem x);
 int TR_delete_root(TREE_PTR *root, elem *x);
 int TR_delete_left(TREE_PTR parent, elem *x);
 int TR_delete_right(TREE_PTR parent, elem *x);
+void TR_print_node(TREE_PTR v);
+void TR_preorder(TREE_PTR v);
+void TR_inorder(TREE_PTR v);
+void TR_postorder(TREE_PTR v);
 
 int main() {
     
@@ -154,4 +158,39 @@ int TR_delete_right(TREE_PTR parent, elem *x) {
     free(current);
     parent->right=NULL;
     return TRUE;
+}
+
+// TR_print_node(): prints node's data 
+void TR_print_node(TREE_PTR v) {
+    printf("%d ", v->data);
+}
+
+
+// TR_preorder(): prints as preorder order 
+void TR_preorder(TREE_PTR v) {
+    if (v!=NULL) {
+        TR_print_node(v);
+        TR_preorder(v->left);
+        TR_preorder(v->right);
+    }
+}
+
+
+// TR_inorder(): prints as inorder order 
+void TR_inorder(TREE_PTR v) {
+    if (v!=NULL) {
+        TR_inorder(v->left);
+        TR_print_node(v);
+        TR_inorder(v->right);
+    }
+}
+
+
+// TR_postorder(): prints as postorder order 
+void TR_postorder(TREE_PTR v) {
+    if (v!=NULL) {
+        TR_postorder(v->left);
+        TR_postorder(v->right);
+        TR_print_node(v);
+    }
 }
