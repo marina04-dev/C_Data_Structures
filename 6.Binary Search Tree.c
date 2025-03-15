@@ -32,6 +32,7 @@ void TR_postorder(TREE_PTR v);
 
 int TR_search_BST(TREE_PTR root, elem x);
 int TR_insert_BST(TREE_PTR *root, elem x);
+int TR_delete_BST(TREE_PTR *root, elem x);
 
 int main() {
     
@@ -253,4 +254,112 @@ int TR_insert_BST(TREE_PTR *root, elem x) {
             }
         }
     }
+}
+
+
+// TR_delete_BST(): deletes x from Search Binary Tree with root 'root'
+int TR_delete_BST(TREE_PTR *root, elem x) {
+    TREE_PTR current, parent, nextOrdered;
+    int p;  /* 1. right child, 2. left child of current */
+    int temp;
+    
+    // 1. Search for node 
+    parent=NULL;
+    current=*root;
+    while (current!=NULL) {
+        if (x==current->data) {
+            break;
+        }
+        else if (x < current->data) {
+            parent=current;
+            p=1;
+            current=current->left;
+        }
+        else {  // x > current->data 
+            parent=current;
+            p=2;
+            current=current->right;
+        }
+    }
+    
+    if (current==NULL) {
+        return FALSE;
+    }
+    
+    // 2.1 If the node i want to delete has no children
+    if (current->left==NULL && current->right==NULL) {
+        free(current);
+        
+        if (parent==NULL) {
+            *root=NULL;
+        }
+        else {
+            if (p==1) {
+                parent->left=NULL;
+            }
+            else {
+                parent->right=NULL;
+            }
+            return TRUE;
+        }
+    }
+    // 2.2 It has only left child 
+    else if (current->left!=NULL && current->right==NULL) { 
+        if (parent==NULL) {
+            *root=current->left;
+        }
+        else {
+            if (p==1) {
+                parent->left=current->left;
+            }
+            else {
+                parent->right=current->left;
+            }
+        }
+        free(current);
+        return TRUE;
+    }
+    //  2.3 It has only right child
+    else if (current->left==NULL && current->right!=NULL) {
+        if (parent==NULL) {
+            *root=current->right;
+        }
+        else {
+            if (p==1) {
+                parent->left=current->right;
+            }
+            else {
+                parent->right=current->right;
+            }
+        }
+        free(current);
+        return TRUE;
+    }
+    //  2.4 It has both left and right children
+    else {
+        // 2.4.1 Finds the next node in the inorder 
+        p=1;
+        nextOrdered=current->right;
+        
+        while (nextOrdered->left!=NULL) {
+            parent=nextOrdered;
+            nextOrdered=nextOrdered->left;
+            p=2;
+        }
+        
+        // 2.4.2 Switches values with the deleted node 
+        current->data=nextOrdered->data;
+        
+        //  2.4.3 Deletes the node 
+        if (p==1) {
+            // 2.4.3.1 The next is the right child 
+            current->right=nextOrdered->right;
+            free(nextOrdered);
+        }
+        else {
+            parent->left=nextOrdered->right;
+            free(nextOrdered);
+        }
+    }
+    
 }
