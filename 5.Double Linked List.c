@@ -27,7 +27,79 @@ void DLL_print(LIST_PTR head);
 
 
 int main() {
-    
+    int elem;
+	LIST_PTR head,prev,current;
+	
+	DLL_init(&head);
+	
+	/* Insert "1" */
+	DLL_insert_start(&head, 1);
+	
+	printf("\n");
+	DLL_print(head);
+	
+	/* Insert "2" at the begining */
+	DLL_insert_start(&head, 2);
+	
+	printf("\n");
+	DLL_print(head);
+	
+	/* Insert "3" after the 1st element */
+	DLL_insert_after(head, 3);
+	
+	printf("\n");
+	DLL_print(head);
+	
+	/* Insert "4" after the 2nd element */
+	DLL_insert_after(head->next, 4);
+	
+	printf("\n");
+	DLL_print(head);
+	
+	/* Insert "5" at the begining */
+	DLL_insert_start(&head, 5);
+	
+	printf("\n");
+	DLL_print(head);
+	
+	/* Insert "6" at the begining */
+	DLL_insert_start(&head, 6);
+	
+	printf("\n");
+	DLL_print(head);
+	
+	/* Insert "4" at the end */
+	current=head;
+	prev=current;
+	while(current->next!=NULL)
+	{
+		prev=current;
+		current=current->next;
+	}
+	DLL_insert_after(prev, 7);
+
+	printf("\n");
+	DLL_print(head);
+
+	/* Deletion of the 1st element */
+	DLL_delete_start(&head,&elem);
+	
+	printf("\n");
+	DLL_print(head);
+
+	/*  Deletion of the last element*/
+	current=head;
+	while(current->next!=NULL)
+	{
+		prev=current;
+		current=current->next;
+	}
+	DLL_delete_after(prev,&elem);
+	
+	printf("\n");
+	DLL_print(head);
+
+	DLL_destroy(&head);
 }
 
 // DLL_init(): initializes the double linked list
