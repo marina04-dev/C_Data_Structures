@@ -35,9 +35,66 @@ int TR_insert_BST(TREE_PTR *root, elem x);
 int TR_delete_BST(TREE_PTR *root, elem x);
 
 int main() {
-    
-
-    return 0;
+    int choice,i;
+	int data;
+	TREE_PTR root;
+	
+	TR_init(&root);
+	TR_insert_BST(&root,10);
+	TR_insert_BST(&root,6);
+	TR_insert_BST(&root,14);
+	TR_insert_BST(&root,5);
+	TR_insert_BST(&root,7);
+	TR_insert_BST(&root,19);
+	TR_insert_BST(&root,2);
+	TR_insert_BST(&root,8);
+	TR_insert_BST(&root,3);
+	
+	while(1) {
+		system("cls");
+		printf("Menu DDA: ");
+		printf("\n--------------");
+		printf("\n1-Insert");
+		printf("\n2-Delete");
+		printf("\n3-Print");
+		printf("\n4-Exit");
+		printf("\nEnter your choice: ");
+		scanf("%d",&choice);
+		
+		switch(choice) {
+			case 1:
+				printf("\nEnter Element: ");
+				scanf("%d",&data);
+				if (TR_insert_BST(&root,data))
+					printf("Insertion completed succesfully!");
+				else
+					printf("Insertion cannot be done! Element already exists!");
+				break;
+			case 2:
+				printf("\nEnter Element: ");
+				scanf("%d",&data);
+				if (TR_delete_BST(&root,data))
+					printf("Element %d completed succesfully", data);
+				else
+					printf("Deletion cannot be done. Element does not exist!");
+				break;
+			case 3:
+				printf("\n INORDER: ");
+				TR_inorder(root);
+				printf("\n PREORDER: ");
+				TR_preorder(root);
+				printf("\n POSTORDER: ");
+				TR_postorder(root);
+				break;
+			case 4:
+				printf("Exit!!");
+				exit(0);
+			default:
+				printf("Wrong Input!");
+		}
+		printf("\n\n");
+		system("pause");
+	}
 }
 
 //TR_init(): initializes the tree's root 
