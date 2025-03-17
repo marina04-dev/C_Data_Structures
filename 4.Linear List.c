@@ -20,7 +20,64 @@ int SL_insert(LIST *l, int ind, elem x);
 int SL_delete(LIST *l, int ind, elem *x);
 
 int main() {
-    
+    int d;
+	LIST l;
+	
+	SL_init(&l);
+	
+	/* Insert "1" */
+	SL_insert(&l, 0, 1);
+	
+	printf("\n");
+	SL_print(l);
+	
+	/* Insert "2" at the start */
+	SL_insert(&l, 0, 2);
+	
+	printf("\n");
+	SL_print(l);
+	
+	/* Insert "3" in 1st place */
+	SL_insert(&l, 1, 3);
+	
+	printf("\n");
+	SL_print(l);
+	
+	/* Insert "4" in 2nd place */
+	SL_insert(&l, 2, 4);
+	
+	printf("\n");
+	SL_print(l);
+	
+	/*  Insert "5" at the start */
+	SL_insert(&l, 0, 5);
+	
+	printf("\n");
+	SL_print(l);
+	
+	/* Insert "6" at the start */
+	SL_insert(&l, 0, 6);
+	
+	printf("\n");
+	SL_print(l);
+	
+	/* Insert "7" in the end */
+	SL_insert(&l, 6, 7);
+
+	printf("\n");
+	SL_print(l);
+
+	/* 1st element's deletion */
+	SL_delete(&l, 0, &d);
+	
+	printf("\n");
+	SL_print(l);
+
+	/* Last elements deletion */
+	SL_delete(&l, 5, &d);
+	
+	printf("\n");
+	SL_print(l);
 }
 
 
