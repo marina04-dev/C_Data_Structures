@@ -26,7 +26,21 @@ void CL_destroy(LIST_PTR *head);
 int CL_get_i(LIST_PTR head, int n, elem *x);
 
 int main() {
-    
+        LIST_PTR list; 
+	elem x; 
+	
+	CL_init(&list);
+	
+	CL_insert_start(&list, 4);
+	CL_insert_start(&list, 3);
+	CL_insert_start(&list, 2);
+	CL_insert_start(&list, 1);
+	CL_print(list);
+	
+	CL_get_i(list, 13, &x);
+	printf("The 13 element is: %d", x);
+	
+	CL_destroy(&list);
 }
 
 
