@@ -23,7 +23,78 @@ void LL_destroy(LIST_PTR *head);
 
 int main()
 {
-  
+  int elem;
+	LIST_PTR head,prev,current;
+	
+	LL_init(&head);
+	
+	/* Insert "1" */
+	LL_insert_start(&head, 1);
+	
+	printf("\n");
+	LL_print(head);
+	
+	/* Insert "2" at the begining */
+	LL_insert_start(&head, 2);
+	
+	printf("\n");
+	LL_print(head);
+	
+	/* Insert "3" after element 1 */
+	LL_insert_after(head, 3);
+	
+	printf("\n");
+	LL_print(head);
+	
+	/* Insert "4" after element 2 */
+	LL_insert_after(head->next, 4);
+	
+	printf("\n");
+	LL_print(head);
+	
+	/* Insert "5" at the start */
+	LL_insert_start(&head, 5);
+	
+	printf("\n");
+	LL_print(head);
+	
+	/* Insert "6" at the start */
+	LL_insert_start(&head, 6);
+	
+	printf("\n");
+	LL_print(head);
+	
+	/* Insert "7" at the end */
+	current=head;
+	prev=current;
+	while(current->next!=NULL) {
+		prev=current;
+		current=current->next;
+	}
+	LL_insert_after(prev, 7);
+
+	printf("\n");
+	LL_print(head);
+
+	/* Deletes the 1st element */
+	LL_delete_start(&head,&elem);
+	
+	printf("\n");
+	LL_print(head);
+
+	/* Deletes the last element */
+	current=head;
+	while(current->next!=NULL)
+	{
+		prev=current;
+		current=current->next;
+	}
+	LL_delete_after(prev,&elem);
+	
+	printf("\n");
+	LL_print(head);
+
+	LL_destroy(&head);
   
 }
 
